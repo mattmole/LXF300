@@ -41,7 +41,7 @@ ballWidth = screenWidth / 50
 # * Height on the screen of each paddle (this references the top of the paddle)
 # * Initial position for the ball
 # * Initial score of zero for each player
-paddleVelocity = 10
+paddleVelocity = 30
 ballVelocity = 2
 ballAngle = random.randint(30,60) / (180 / math.pi)
 ballDirection = random.choice([-1,1])
@@ -74,9 +74,6 @@ class Sprite(pygame.sprite.Sprite):
         self.image = pygame.Surface((self.paddleWidth, self.paddleHeight))
         self.image.fill(self.colour)
         self.rect = self.image.get_rect()
- 
-#    def update(self):
-#        self.rect = self.image.get_rect()
 
 # The while loop will carry on until the user exits the game (e.g. clicks the close button or presses the escape key).
 carryOn = True
@@ -97,46 +94,43 @@ while carryOn:
     # Fill the screen with a black colour
     screen.fill(black)
 
-    # Return all keys that are pressed for each time around the loop
-    keys_pressed = pygame.key.get_pressed()
-
-    # When the a key is pressed
-    if keys_pressed[pygame.K_a]:
-        #Move the left paddle up
-        leftPaddleHeight = leftPaddleHeight - paddleVelocity
-        if leftPaddleHeight < 0:
-            leftPaddleHeight = 0
-    # When the z key is pressed
-    elif keys_pressed[pygame.K_z]:
-        #Move the left paddle down
-        leftPaddleHeight = leftPaddleHeight + paddleVelocity
-        if leftPaddleHeight > screenHeight - leftPaddle.paddleHeight:
-            leftPaddleHeight = screenHeight - leftPaddle.paddleHeight
-    # When the k key is pressed
-    elif keys_pressed[pygame.K_k]:
-        #Move the right paddle up
-        rightPaddleHeight = rightPaddleHeight - paddleVelocity
-        if rightPaddleHeight < 0:
-            rightPaddleHeight = 0
-    # When the m key is pressed
-    elif keys_pressed[pygame.K_m]:
-        #Move the right paddle down
-        rightPaddleHeight = rightPaddleHeight + paddleVelocity
-        if rightPaddleHeight > screenHeight - rightPaddle.paddleHeight:
-            rightPaddleHeight = screenHeight - rightPaddle.paddleHeight
-    elif keys_pressed[pygame.K_UP]:
-        if paddleVelocity <= 100:
-            paddleVelocity += 0.2
-    elif keys_pressed[pygame.K_DOWN]:
-        if paddleVelocity >= 1.2:
-            paddleVelocity -= 0.2
-    elif keys_pressed[pygame.K_ESCAPE]:
-        carryOn = False
-
     # Use the events framework to determine when the quit button is clicked and if the escape key is pressed
     for event in pygame.event.get(): # User did something
         if event.type == pygame.QUIT: # If user clicked close
             carryOn = False # Flag that we are done so we can exit the while loop
+        if event.type == pygame.KEYDOWN:
+            # When the a key is pressed
+            if event.key == pygame.K_a:
+                # Move the left paddle up
+                leftPaddleHeight = leftPaddleHeight - paddleVelocity
+                if leftPaddleHeight < 0:
+                    leftPaddleHeight = 0    
+            # When the z key is pressed    
+            elif event.key == pygame.K_z:
+                # Move the left paddle down
+                leftPaddleHeight = leftPaddleHeight + paddleVelocity
+                if leftPaddleHeight > screenHeight - leftPaddle.paddleHeight:
+                    leftPaddleHeight = screenHeight - leftPaddle.paddleHeight 
+            # When the k key is pressed
+            elif event.key == pygame.K_k:
+                # Move the right paddle up
+                rightPaddleHeight = rightPaddleHeight - paddleVelocity
+                if rightPaddleHeight < 0:
+                    rightPaddleHeight = 0                       
+            # When the m key is pressed
+            elif event.key == pygame.K_m:
+                #Move the right paddle down
+                rightPaddleHeight = rightPaddleHeight + paddleVelocity
+                if rightPaddleHeight > screenHeight - rightPaddle.paddleHeight:
+                    rightPaddleHeight = screenHeight - rightPaddle.paddleHeight
+            elif event.key == pygame.K_UP:
+                if paddleVelocity <= 100:
+                    paddleVelocity += 0.2
+            elif event.key == pygame.K_DOWN:
+                if paddleVelocity >= 1.2:
+                    paddleVelocity -= 0.2
+            elif event.key == pygame.K_ESCAPE:
+                carryOn = False
 
     #Make the ball move, based on the initial random values
     ballPositionX += ballDirectionX*ballVelocity*math.cos(ballAngle)
