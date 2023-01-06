@@ -27,7 +27,6 @@ ballDirection = random.choice([-1,1])
 ballDirectionX = ballDirection
 ballDirectionY = ballDirection
 leftPaddleHeight = startingPaddleY
-rightPaddleHeight = startingPaddleY
 ballPositionX = screenWidth / 2
 ballPositionY = random.randint(0,screenHeight - int(ballHeight)+1)
 
