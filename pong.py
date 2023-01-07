@@ -157,7 +157,7 @@ while carryOn:
 
     # Construct a string to be displayed with the score for each player
     scoreString = f'Score: {leftPaddleScore}-{rightPaddleScore}'
-    settingsString = f'Paddle Velocity: {round(paddleVelocity,1)} - Ball Velocity: {ballVelocity} - PaddleSize: {round(leftPaddle.paddleHeight,1)}'
+    settingsString = f'Paddle Velocity: {round(paddleVelocity,1)} - Ball Velocity: {round(ballVelocity,1)} - PaddleSize: {round(leftPaddle.paddleHeight,1)}'
 
     # If the ball leaves the screen on the left or right hand side, set the position back to a random location
     # near the middle of the screen, with a random angle and moving in the opposite direction to the one it was
