@@ -17,9 +17,12 @@ This file contains a partially completed game and is what is discussed in the ma
 
 This file contains a more complete version of a Pong game.
 
-* Control the left paddle with the "a" and "z" keys
-* Control the right paddle with the "k" and "m" keys
+* Control the left paddle with the "a" and "z" keys - these keys only respond to key pressed
+* Control the left paddle with the "s" and "x" keys - these keys respond for as long as the key is held down
+* Control the right paddle with the "k" and "m" keys - these keys only respond to key pressed
+* Control the right paddle with the "j" and "n" keys - these keys respond for as long as the key is held down
 * Control the speed of the paddle for both players using the up and down arrows
+* Quit the game by closing the window or using the escape key
 
 ### Improvements
 
